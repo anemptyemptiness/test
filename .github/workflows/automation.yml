@@ -6,7 +6,7 @@ name: "automate-tg-bot"
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
 # Задачи, которые будут выполняться в рамках флоу
 jobs:
