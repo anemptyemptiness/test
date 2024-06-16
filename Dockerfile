@@ -11,6 +11,6 @@ COPY requirements_unix.txt .
 
 RUN pip install -r /py-aiogram-carousel-tabel-bot/requirements_unix.txt
 
-COPY src /py-aiogram-carousel-tabel-bot/src/
+COPY . /py-aiogram-carousel-tabel-bot/
 
 CMD ["python", "-m", "src/main.py"]
