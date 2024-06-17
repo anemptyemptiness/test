@@ -30,7 +30,7 @@ services:
 
     restart: unless-stopped
     env_file: '.env-non-dev'
-    command: sh -c '/py-aiogram-carousel-tabel-bot/docker/migrations.sh'
+    command: sh -c '/app/docker/migrations.sh'
     depends_on:
       postgres_db:
         condition: service_healthy

@@ -10,3 +10,5 @@ INSERT INTO employees (user_id, fullname, username, role) VALUES
 psql -h postgres_db -U postgres -d bot -c "
 INSERT INTO places (chat_id, title) VALUES
 (-123456789, 'тест точка');"
+
+python -m src
