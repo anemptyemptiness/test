@@ -1,0 +1,41 @@
+version: '3'
+services:
+  redis_db:
+    image: redis
+    container_name: redis_bot
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+
+  postgres_db:
+    image: postgres
+    container_name: postgres_bot
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    env_file: '.env-non-dev'
+
+  bot:
+    container_name: bot_app
+    build:
+      context: .
+
+    #    volumes:
+    #      - postgresdata:/var/lib/postgresql/data
+
+    restart: unless-stopped
+    env_file: '.env-non-dev'
+    command: sh -c '/py-aiogram-carousel-tabel-bot/docker/migrations.sh'
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+      redis_db:
+        condition: service_started
+
+#volumes:
+#  postgresdata:

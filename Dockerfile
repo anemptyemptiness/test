@@ -9,8 +9,12 @@ WORKDIR py-aiogram-carousel-tabel-bot/
 
 COPY requirements_unix.txt .
 
-RUN pip install -r /py-aiogram-carousel-tabel-bot/requirements_unix.txt
+RUN pip install -r requirements_unix.txt
 
-COPY . /py-aiogram-carousel-tabel-bot/
+RUN apt-get update && apt-get install -y postgresql-client
 
-CMD ["python", "-m", "src/main.py"]
+COPY . .
+
+ENV PYTHONPATH="py-aiogram-carousel-tabel-bot/src"
+
+CMD ["python", "-m", "py-aiogram-carousel-tabel-bot/src"]
