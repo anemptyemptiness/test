@@ -1,0 +1,17 @@
+name: test ci
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu
+    steps:
+      - name: установка g++
+        run: sudo apt-get install g++
+      - name: билдим
+        run: g++ -o main main.cpp
+      - name: запуск
+        run: ./main
