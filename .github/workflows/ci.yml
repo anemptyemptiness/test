@@ -1,14 +1,15 @@
-name: test ci
+name: test build cpp app
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: установка g++
         run: sudo apt-get install g++
       - name: билдим
